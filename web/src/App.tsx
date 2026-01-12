@@ -1,7 +1,6 @@
 /**
- * Tamil MTV - Retro Music Video Player
+ * ஒ Tube (Otha Tube) - Ad-Free Tamil Music Player
  *
- * A wantmymtv.xyz-inspired Tamil music video player
  * 100% static, deployable to GitHub Pages
  */
 
@@ -96,7 +95,7 @@ function App() {
       <div className="min-h-screen flex flex-col">
         {/* Header */}
         <header className="p-6 text-center">
-          <h1 className="mtv-title mb-2">🎵 O TUBE</h1>
+          <h1 className="mtv-title mb-2">ஒ TUBE</h1>
           <p className="text-gray-500 text-lg">
             Ad-Free Tamil Music • Non-Stop
           </p>
@@ -132,7 +131,7 @@ function App() {
             onClick={() => setShowChannels(!showChannels)}
             className="flex items-center gap-2 hover:opacity-80"
           >
-            <span className="mtv-title text-2xl">🎵 O TUBE</span>
+            <span className="mtv-title text-2xl">ஒ TUBE</span>
           </button>
 
           <div className="flex items-center gap-4">
