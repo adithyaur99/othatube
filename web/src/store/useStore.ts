@@ -94,7 +94,7 @@ export function useAppStore(): AppState {
   // Load stations on mount
   const loadStations = useCallback(async () => {
     try {
-      const response = await fetch('/data/stations.json');
+      const response = await fetch(`${import.meta.env.BASE_URL}data/stations.json`);
       const data = await response.json();
       setStations(data);
 
@@ -118,7 +118,7 @@ export function useAppStore(): AppState {
     localStorage.setItem(STORAGE_KEYS.LAST_STATION, station.slug);
 
     try {
-      const response = await fetch(`/data/${station.videoFile}`);
+      const response = await fetch(`${import.meta.env.BASE_URL}data/${station.videoFile}`);
       const data: Video[] = await response.json();
 
       // Filter out bad videos and non-embeddable
