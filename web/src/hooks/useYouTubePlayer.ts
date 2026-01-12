@@ -78,10 +78,11 @@ export function useYouTubePlayer({
     loadYouTubeAPI().then(() => {
       if (!mounted) return;
 
-      // Create player instance
+      // Create player instance using youtube-nocookie.com for privacy/fewer ads
       const player = new window.YT.Player(containerId, {
         height: '100%',
         width: '100%',
+        host: 'https://www.youtube-nocookie.com',
         playerVars: {
           autoplay: 1,
           controls: 1,
@@ -91,6 +92,8 @@ export function useYouTubePlayer({
           playsinline: 1,
           enablejsapi: 1,
           origin: window.location.origin,
+          disablekb: 0,
+          iv_load_policy: 3,  // Hide annotations
         },
         events: {
           onReady: () => {
