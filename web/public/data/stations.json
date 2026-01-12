@@ -1,0 +1,212 @@
+[
+  {
+    "slug": "ilaiyaraaja",
+    "name": "Ilaiyaraaja",
+    "icon": "👑",
+    "description": "The Maestro - King of Tamil Film Music",
+    "videoFile": "videos.ilaiyaraaja.json"
+  },
+  {
+    "slug": "deva",
+    "name": "Deva",
+    "icon": "🎸",
+    "description": "Mass Music Director",
+    "videoFile": "videos.deva.json"
+  },
+  {
+    "slug": "arr",
+    "name": "A.R. Rahman",
+    "icon": "🏆",
+    "description": "Mozart of Madras - Oscar Winner",
+    "videoFile": "videos.arr.json"
+  },
+  {
+    "slug": "yuvan",
+    "name": "Yuvan Shankar Raja",
+    "icon": "🎧",
+    "description": "Youth Icon - U1",
+    "videoFile": "videos.yuvan.json"
+  },
+  {
+    "slug": "gv-prakash",
+    "name": "G.V. Prakash",
+    "icon": "🎹",
+    "description": "Young Sensation",
+    "videoFile": "videos.gv-prakash.json"
+  },
+  {
+    "slug": "anirudh",
+    "name": "Anirudh",
+    "icon": "🔥",
+    "description": "Rockstar - Modern Tamil Music",
+    "videoFile": "videos.anirudh.json"
+  },
+  {
+    "slug": "santhosh-narayanan",
+    "name": "Santhosh Narayanan",
+    "icon": "🥁",
+    "description": "Master of Folk & Raw Music",
+    "videoFile": "videos.santhosh-narayanan.json"
+  },
+  {
+    "slug": "imman",
+    "name": "D. Imman",
+    "icon": "🎺",
+    "description": "King of Melodies",
+    "videoFile": "videos.imman.json"
+  },
+  {
+    "slug": "vidyasagar",
+    "name": "Vidyasagar",
+    "icon": "🎻",
+    "description": "Melody King",
+    "videoFile": "videos.vidyasagar.json"
+  },
+  {
+    "slug": "harris",
+    "name": "Harris Jayaraj",
+    "icon": "🎼",
+    "description": "Master of BGM & Melodies",
+    "videoFile": "videos.harris.json"
+  },
+  {
+    "slug": "thaman",
+    "name": "S. Thaman",
+    "icon": "⚡",
+    "description": "Blockbuster Hit Machine",
+    "videoFile": "videos.thaman.json"
+  },
+  {
+    "slug": "ghibran",
+    "name": "Ghibran",
+    "icon": "🌟",
+    "description": "Musical Genius",
+    "videoFile": "videos.ghibran.json"
+  },
+  {
+    "slug": "hiphop-tamizha",
+    "name": "Hiphop Tamizha",
+    "icon": "🎤",
+    "description": "Tamil Hip-Hop Revolution",
+    "videoFile": "videos.hiphop-tamizha.json"
+  },
+  {
+    "slug": "sam-cs",
+    "name": "Sam C.S.",
+    "icon": "🎭",
+    "description": "Master of Intense BGM",
+    "videoFile": "videos.sam-cs.json"
+  },
+  {
+    "slug": "sean-roldan",
+    "name": "Sean Roldan",
+    "icon": "🎵",
+    "description": "Indie Music Pioneer",
+    "videoFile": "videos.sean-roldan.json"
+  },
+  {
+    "slug": "msv",
+    "name": "M.S. Viswanathan",
+    "icon": "🪷",
+    "description": "Legendary Composer",
+    "videoFile": "videos.msv.json"
+  },
+  {
+    "slug": "sirpy",
+    "name": "Sirpy",
+    "icon": "🎷",
+    "description": "Folk & Mass Entertainer",
+    "videoFile": "videos.sirpy.json"
+  },
+  {
+    "slug": "dharan",
+    "name": "Dharan Kumar",
+    "icon": "🎶",
+    "description": "Rising Star",
+    "videoFile": "videos.dharan.json"
+  },
+  {
+    "slug": "gangai-amaran",
+    "name": "Gangai Amaran",
+    "icon": "🪘",
+    "description": "Folk Legend",
+    "videoFile": "videos.gangai-amaran.json"
+  },
+  {
+    "slug": "srikanth-deva",
+    "name": "Srikanth Deva",
+    "icon": "🎙",
+    "description": "Mass Entertainer",
+    "videoFile": "videos.srikanth-deva.json"
+  },
+  {
+    "slug": "vijay-antony",
+    "name": "Vijay Antony",
+    "icon": "🎬",
+    "description": "Composer & Actor",
+    "videoFile": "videos.vijay-antony.json"
+  },
+  {
+    "slug": "bharathwaj",
+    "name": "Bharathwaj",
+    "icon": "🎹",
+    "description": "Melody Maestro",
+    "videoFile": "videos.bharathwaj.json"
+  },
+  {
+    "slug": "nivas-prasanna",
+    "name": "Nivas K. Prasanna",
+    "icon": "🎼",
+    "description": "Modern Melodist",
+    "videoFile": "videos.nivas-prasanna.json"
+  },
+  {
+    "slug": "sa-rajkumar",
+    "name": "S.A. Rajkumar",
+    "icon": "💿",
+    "description": "90s Hit Machine",
+    "videoFile": "videos.sa-rajkumar.json"
+  },
+  {
+    "slug": "justin-prabhakaran",
+    "name": "Justin Prabhakaran",
+    "icon": "🌙",
+    "description": "Soulful Composer",
+    "videoFile": "videos.justin-prabhakaran.json"
+  },
+  {
+    "slug": "mani-sharma",
+    "name": "Mani Sharma",
+    "icon": "🎸",
+    "description": "Telugu-Tamil Hitmaker",
+    "videoFile": "videos.mani-sharma.json"
+  },
+  {
+    "slug": "karthik-raja",
+    "name": "Karthik Raja",
+    "icon": "👨‍👦",
+    "description": "Son of the Maestro",
+    "videoFile": "videos.karthik-raja.json"
+  },
+  {
+    "slug": "c-sathya",
+    "name": "C. Sathya",
+    "icon": "🎹",
+    "description": "Versatile Composer",
+    "videoFile": "videos.c-sathya.json"
+  },
+  {
+    "slug": "leon-james",
+    "name": "Leon James",
+    "icon": "✨",
+    "description": "Young Talent",
+    "videoFile": "videos.leon-james.json"
+  },
+  {
+    "slug": "shuffle-all",
+    "name": "Shuffle All",
+    "icon": "🎲",
+    "description": "Random mix of all Tamil songs",
+    "videoFile": "videos.all.json"
+  }
+]

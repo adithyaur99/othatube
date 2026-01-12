@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamil MTV Catalog - Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg-dark: #0f0f1a;
+      --bg-card: #1a1a2e;
+      --bg-hover: #252540;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0b0;
+      --accent: #e94560;
+      --accent-secondary: #0f3460;
+      --success: #00d26a;
+      --warning: #ffc107;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .header p {
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      color: var(--text-secondary);
+      margin-top: 0.5rem;
+    }
+
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .chart-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .chart-card h3 {
+      margin-bottom: 1rem;
+      color: var(--text-secondary);
+    }
+
+    .chart-container {
+      position: relative;
+      height: 300px;
+    }
+
+    .table-container {
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--bg-hover);
+    }
+
+    th {
+      background: var(--bg-hover);
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    tr:hover {
+      background: var(--bg-hover);
+    }
+
+    .channel-row {
+      cursor: pointer;
+    }
+
+    .channel-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .channel-thumb {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--bg-hover);
+    }
+
+    .channel-name {
+      font-weight: 600;
+    }
+
+    .channel-handle {
+      color: var(--text-secondary);
+      font-size: 0.875rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge-success {
+      background: rgba(0, 210, 106, 0.2);
+      color: var(--success);
+    }
+
+    .badge-warning {
+      background: rgba(255, 193, 7, 0.2);
+      color: var(--warning);
+    }
+
+    .badge-error {
+      background: rgba(233, 69, 96, 0.2);
+      color: var(--accent);
+    }
+
+    .progress-bar {
+      height: 8px;
+      background: var(--bg-hover);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 4px;
+      transition: width 0.3s;
+    }
+
+    .search-box {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+
+    .search-box input:focus {
+      outline: 2px solid var(--accent);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .tab {
+      padding: 0.75rem 1.5rem;
+      background: var(--bg-card);
+      border: none;
+      border-radius: 8px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab:hover {
+      background: var(--bg-hover);
+    }
+
+    .tab.active {
+      background: var(--accent);
+      color: white;
+    }
+
+    .failed-list {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+
+    .failed-item {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--bg-hover);
+    }
+
+    .failed-item:last-child {
+      border-bottom: none;
+    }
+
+    .failed-name {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .failed-reason {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+    }
+
+    .number {
+      font-variant-numeric: tabular-nums;
+    }
+
+    @media (max-width: 768px) {
+      .charts-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header h1 {
+        font-size: 1.75rem;
+      }
+
+      table {
+        font-size: 0.875rem;
+      }
+
+      th, td {
+        padding: 0.75rem 0.5rem;
+      }
+    }
+
+    .loading {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--bg-hover);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Tamil MTV Catalog</h1>
+    <p>YouTube Music Video Database Visualizer</p>
+  </div>
+
+  <div class="container">
+    <!-- Stats Cards -->
+    <div class="stats-grid" id="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="stat-channels">-</div>
+        <div class="stat-label">Channels</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-videos">-</div>
+        <div class="stat-label">Videos Discovered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-fetched">-</div>
+        <div class="stat-label">With Metadata</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-subscribers">-</div>
+        <div class="stat-label">Total Subscribers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-views">-</div>
+        <div class="stat-label">Total Views</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="stat-pending">-</div>
+        <div class="stat-label">Pending Metadata</div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="charts-grid">
+      <div class="chart-card">
+        <h3>Top 10 Channels by Subscribers</h3>
+        <div class="chart-container">
+          <canvas id="chart-subscribers"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3>Top 10 Channels by Videos Discovered</h3>
+        <div class="chart-container">
+          <canvas id="chart-videos"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3>Subscriber Distribution</h3>
+        <div class="chart-container">
+          <canvas id="chart-distribution"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <h3>Resolution Methods</h3>
+        <div class="chart-container">
+          <canvas id="chart-methods"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="channels">All Channels</button>
+      <button class="tab" data-tab="failed">Failed Resolutions</button>
+    </div>
+
+    <!-- Channels Table -->
+    <div class="section" id="channels-section">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th>Subscribers</th>
+              <th>Videos</th>
+              <th>Discovered</th>
+              <th>Crawl Progress</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="channels-table">
+            <tr>
+              <td colspan="6" class="loading">
+                <div class="spinner"></div>
+                <p>Loading channels...</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Failed Seeds -->
+    <div class="section" id="failed-section" style="display: none;">
+      <div class="failed-list" id="failed-list">
+        <div class="loading">
+          <div class="spinner"></div>
+          <p>Loading...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Utility functions
+    function formatNumber(num) {
+      if (num === null || num === undefined) return '-';
+      if (num >= 1e9) return (num / 1e9).toFixed(1) + 'B';
+      if (num >= 1e6) return (num / 1e6).toFixed(1) + 'M';
+      if (num >= 1e3) return (num / 1e3).toFixed(1) + 'K';
+      return num.toLocaleString();
+    }
+
+    function formatBigNumber(num) {
+      if (num === null || num === undefined) return '-';
+      return num.toLocaleString();
+    }
+
+    // Chart.js defaults
+    Chart.defaults.color = '#a0a0b0';
+    Chart.defaults.borderColor = '#252540';
+
+    // Load stats
+    async function loadStats() {
+      const res = await fetch('/api/stats');
+      const data = await res.json();
+
+      document.getElementById('stat-channels').textContent = data.channels.total || 0;
+      document.getElementById('stat-videos').textContent = formatNumber(data.videos.total || 0);
+      document.getElementById('stat-fetched').textContent = formatNumber(data.videos.fetched || 0);
+      document.getElementById('stat-subscribers').textContent = formatNumber(data.channels.total_subscribers || 0);
+      document.getElementById('stat-views').textContent = formatNumber(data.channels.total_views || 0);
+      document.getElementById('stat-pending').textContent = formatNumber(data.videos.pending || 0);
+    }
+
+    // Load channels table
+    async function loadChannels() {
+      const res = await fetch('/api/channels');
+      const channels = await res.json();
+
+      const tbody = document.getElementById('channels-table');
+      tbody.innerHTML = channels.map(ch => {
+        const progress = ch.crawl_total ? Math.round((ch.crawl_progress || 0) / ch.crawl_total * 100) : 0;
+        const statusBadge = ch.resolution_status === 'resolved'
+          ? (ch.crawl_complete ? '<span class="badge badge-success">Complete</span>' : '<span class="badge badge-warning">Crawling</span>')
+          : '<span class="badge badge-error">Failed</span>';
+
+        return `
+          <tr class="channel-row" data-id="${ch.resolved_channel_id || ''}">
+            <td>
+              <div class="channel-info">
+                <img class="channel-thumb" src="${ch.thumbnail_url || ''}" alt="" onerror="this.style.display='none'">
+                <div>
+                  <div class="channel-name">${ch.resolved_title || ch.seed_name}</div>
+                  <div class="channel-handle">${ch.handle || ''}</div>
+                </div>
+              </div>
+            </td>
+            <td class="number">${formatNumber(ch.subscriber_count)}</td>
+            <td class="number">${formatNumber(ch.channel_video_count)}</td>
+            <td class="number">${formatNumber(ch.discovered_videos)}</td>
+            <td>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: ${progress}%"></div>
+              </div>
+              <small>${ch.crawl_progress || 0} / ${ch.crawl_total || '?'}</small>
+            </td>
+            <td>${statusBadge}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Load charts
+    async function loadCharts() {
+      // Top by subscribers
+      const subsRes = await fetch('/api/channels/top/subscriber_count?limit=10');
+      const subsData = await subsRes.json();
+
+      new Chart(document.getElementById('chart-subscribers'), {
+        type: 'bar',
+        data: {
+          labels: subsData.map(c => c.resolved_title?.substring(0, 20) || c.seed_name.substring(0, 20)),
+          datasets: [{
+            label: 'Subscribers',
+            data: subsData.map(c => c.subscriber_count || 0),
+            backgroundColor: '#e94560',
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } }
+        }
+      });
+
+      // Top by videos discovered
+      const vidsRes = await fetch('/api/channels/top/discovered_videos?limit=10');
+      const vidsData = await vidsRes.json();
+
+      new Chart(document.getElementById('chart-videos'), {
+        type: 'bar',
+        data: {
+          labels: vidsData.map(c => c.resolved_title?.substring(0, 20) || c.seed_name.substring(0, 20)),
+          datasets: [{
+            label: 'Videos Discovered',
+            data: vidsData.map(c => c.discovered_videos || 0),
+            backgroundColor: '#0f3460',
+            borderRadius: 4
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } }
+        }
+      });
+
+      // Subscriber distribution
+      const distRes = await fetch('/api/analytics/subscriber-distribution');
+      const distData = await distRes.json();
+
+      new Chart(document.getElementById('chart-distribution'), {
+        type: 'doughnut',
+        data: {
+          labels: distData.map(d => d.range),
+          datasets: [{
+            data: distData.map(d => d.count),
+            backgroundColor: ['#e94560', '#ff6b6b', '#ffa502', '#70a1ff', '#2ed573']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'right' }
+          }
+        }
+      });
+
+      // Resolution methods
+      const methodsRes = await fetch('/api/analytics/resolution-methods');
+      const methodsData = await methodsRes.json();
+
+      new Chart(document.getElementById('chart-methods'), {
+        type: 'pie',
+        data: {
+          labels: methodsData.map(m => m.resolution_method || 'unknown'),
+          datasets: [{
+            data: methodsData.map(m => m.count),
+            backgroundColor: ['#0f3460', '#e94560', '#16213e']
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'right' }
+          }
+        }
+      });
+    }
+
+    // Load failed seeds
+    async function loadFailed() {
+      const res = await fetch('/api/failed-seeds');
+      const failed = await res.json();
+
+      const container = document.getElementById('failed-list');
+
+      if (failed.length === 0) {
+        container.innerHTML = '<p style="padding: 1rem; color: var(--text-secondary);">No failed resolutions!</p>';
+        return;
+      }
+
+      container.innerHTML = failed.map(f => `
+        <div class="failed-item">
+          <div class="failed-name">${f.seed_name}</div>
+          <div class="failed-reason">${f.resolution_error || 'Unknown error'}</div>
+        </div>
+      `).join('');
+    }
+
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const tabName = tab.dataset.tab;
+        document.getElementById('channels-section').style.display = tabName === 'channels' ? 'block' : 'none';
+        document.getElementById('failed-section').style.display = tabName === 'failed' ? 'block' : 'none';
+
+        if (tabName === 'failed') {
+          loadFailed();
+        }
+      });
+    });
+
+    // Initialize
+    loadStats();
+    loadChannels();
+    loadCharts();
+  </script>
+</body>
+</html>
