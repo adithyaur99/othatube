@@ -1,6 +1,6 @@
 # ஒ Tube - Web App
 
-The frontend for ஒ Tube (Otha Tube) - Ad-free Tamil music streaming.
+The frontend for ஒ Tube (Otha Tube) - Non-stop Tamil music streaming.
 
 ## Development
 

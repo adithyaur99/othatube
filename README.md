@@ -1,6 +1,6 @@
 # ஒ Tube (Otha Tube) 🎵
 
-Ad-free Tamil music streaming. 31,000+ videos from 30 music directors.
+Non-stop Tamil music streaming. 31,000+ videos from 30 music directors.
 
 **Live:** https://adithyaur99.github.io/othatube/
 
@@ -10,7 +10,7 @@ Ad-free Tamil music streaming. 31,000+ videos from 30 music directors.
 - 🔀 **Shuffle All** - Random mix of 31,000+ Tamil songs
 - ▶️ **Click-to-Jump Queue** - Click any song in "Up Next" to play it
 - 📱 **Responsive Design** - Works on desktop and mobile
-- 🚫 **No Ads** - Just music, non-stop
+- 🎶 **Non-Stop** - Endless shuffle, auto-advances
 
 ## Music Directors
 

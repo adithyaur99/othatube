@@ -1,5 +1,5 @@
 /**
- * ஒ Tube (Otha Tube) - Ad-Free Tamil Music Player
+ * ஒ Tube (Otha Tube) - Non-Stop Tamil Music Player
  *
  * 100% static, deployable to GitHub Pages
  */
@@ -97,7 +97,7 @@ function App() {
         <header className="p-6 text-center">
           <h1 className="mtv-title mb-2">ஒ TUBE</h1>
           <p className="text-gray-500 text-lg">
-            Ad-Free Tamil Music • Non-Stop
+            Non-Stop Tamil Music • 31,000+ Songs
           </p>
         </header>
 
@@ -114,7 +114,7 @@ function App() {
 
         {/* Footer */}
         <footer className="p-4 text-center text-sm text-gray-700">
-          <p>Powered by YouTube • Ad-Free Tamil Music</p>
+          <p>Powered by YouTube • 30 Music Directors</p>
         </footer>
       </div>
     );
