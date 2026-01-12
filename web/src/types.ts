@@ -53,6 +53,7 @@ declare global {
         height?: string | number;
         width?: string | number;
         videoId?: string;
+        host?: string;  // For youtube-nocookie.com (fewer ads)
         playerVars?: Record<string, unknown>;
         events?: {
           onReady?: () => void;
